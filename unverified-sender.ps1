@@ -10,14 +10,15 @@ if (!$rule) {
     Write-Host "Rule not found, creating rule" -ForegroundColor Green
     New-TransportRule -Name $ruleName -Priority 1 -HeaderContainsMessageHeader "Authentication-Results"`
     -HeaderContainsWords "spf=TempError","spf=PermError","spf=None","spf=Neutral","spf=SoftFail","spf=Fail"`
-    -PrependSubject "[Unverified Sender] "
+    -PrependSubject "[Unverified Sender] "`
+    -Comments "Rule Created by https://github.com/sparksbenjamin/base-secure-exchange"
+    
 }
 else {
     Write-Host "Rule found, updating rule" -ForegroundColor Green
-    Set-TransportRule -Identity $ruleName
-    -Priority 1
-    -HeaderContainsMessageHeader "Authentication-Results"`
+    Set-TransportRule -Identity $ruleName -Priority 1 -HeaderContainsMessageHeader "Authentication-Results"`
     -HeaderContainsWords "spf=TempError","spf=PermError","spf=None","spf=Neutral","spf=SoftFail","spf=Fail"`
+    -Comments "Rule Created by https://github.com/sparksbenjamin/base-secure-exchange"`
     -PrependSubject "[Unverified Sender] "
 }
 Remove-PSSession $Session
