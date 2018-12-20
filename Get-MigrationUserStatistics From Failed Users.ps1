@@ -1,6 +1,6 @@
-$O365credential = Get-Credential
-$O365Session = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri https://outlook.office365.com/powershell-liveid/ -Credential $O365credential -Authentication Basic -AllowRedirection
-Import-PSSession $O365Session -DisableNameChecking -AllowClobber
+$o365credential = Get-Credential
+$o365Session = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri https://outlook.office365.com/powershell-liveid/ -Credential $o365credential -Authentication Basic -AllowRedirection
+Import-PSSession $o365Session -DisableNameChecking -AllowClobber
 
 $failed = Get-MigrationUser -ResultSize unlimited | where {$_.status -eq "Failed"};
 
@@ -32,4 +32,4 @@ if ( $synching -eq $null ) {
      };
 };
 
-Remove-PSSession $O365Session
+Remove-PSSession $o365Session
