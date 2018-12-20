@@ -1,0 +1,25 @@
+#
+# This script can take some time to complete depending on the number of Mailboxes in your environment.
+#
+
+$exchangeServer = "exchange13sec"
+$ExchangeSession = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri ("http://{0}/PowerShell" -f $exchangeServer)
+Import-PSSession $ExchangeSession -AllowClobber
+
+$mailbox_with_forwarding = Get-Mailbox -ResultSize Unlimited | where {$_.ForwardingAddresss -ne $null -or $_.ForwardingSmtpAddress -ne $null}
+# Get-Mailbox -ResultSize Unlimited | where {$_.ForwardingAddresss -ne $null -or $_.ForwardingSmtpAddress -ne $null} |fl *name*,*forward*
+
+if ( $mailbox_with_forwarding -eq $null ) {
+    Write-Host No Accounts have Forwarding in your Exchange Environment at this time...
+} else {
+    $Activity = "Number of Accounts with Email Forwarding: "+$mailbox_with_forwarding.count;
+    $i = 0;
+    foreach ($user in $mailbox_with_forwarding) { 
+        $i++;
+        Write-Progress -Activity $Activity -status "Processing: $i" -percentComplete ($i / $mailbox_with_forwarding.count*100);
+        Get-MigrationUserStatistics -Identity $user.Identity| Select BatchID, identity, state, status, *count*;
+    };
+    $Activity;
+};
+
+Remove-PSSession $exchangeServer
