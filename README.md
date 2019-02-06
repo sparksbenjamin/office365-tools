@@ -1,3 +1,4 @@
+# Office 365 Toolbox
 
 This is a collection of scripts that will create some basic security rules on your Office 365 Exchange online.  You will need to update the scripts to use your EMAIL and PASSWORD!  Once you have done that they script should run and create or update the rules on exchange.  Each script is explaned below. 
 
