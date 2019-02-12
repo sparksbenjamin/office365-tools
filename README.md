@@ -6,6 +6,6 @@ This is a collection of scripts that will create some basic security rules on yo
 
 <h3>Matching External Senders</h3><p>This will create a rule that will prepend text to the inbound external email that has a sender that matches one of your users display name.  This will help the mailbox owner know when they are repling to an external account and not a org mailbox.</p>
 
-<h3>Group Bulk Imports</h3><p>This script is meant to work for Distribution Groups. This will allow you to setup a import csv with the identity of the groups and the email addresses that get imported into that group.  The script will prompt you for a run as account to use to perform this operation.  It is suggested that this group be an admin or the owner of the the group.</p>
+<h3>Group Bulk Imports</h3><p>This script is meant to work for Distribution Groupsa and takes the paramater of csv. This will allow you to setup a import csv with the identity of the groups and the email addresses that get imported into that group.  The script will prompt you for a run as account to use to perform this operation.  It is suggested that this group be an admin or the owner of the the group.</p>
   
   
