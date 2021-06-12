@@ -1,4 +1,4 @@
-$ruleName = "Unverified Sender - No SPF Validation"
+$ruleName = "Unverified Sender - No SPF Validation - Sending Domain"
 $Username = "EMAIL"
 $Password = ConvertTo-SecureString ‘PASSWORD’ -AsPlainText -Force
 $Session = New-PSSession -ConnectionUri https://outlook.office365.com/powershell-liveid/ `
