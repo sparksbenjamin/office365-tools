@@ -15,7 +15,7 @@ if (!$rule) {
     
 }
 else {
-    Write-Host "Rule found, updating rule" -ForegroundColor Green
+    Write-Host "No Rule found, Creating rule" -ForegroundColor Green
     Set-TransportRule -Identity $ruleName -Priority 1  -Quarantine $True -SenderDomainIs $DOMAIN -RecipientDomainIs $DOMAIN -HeaderContainsMessageHeader "Authentication-Results"`
     -HeaderContainsWords "spf=TempError","spf=PermError","spf=None","spf=Neutral","spf=SoftFail","spf=Fail"`
     -Comments "Rule Created by https://github.com/sparksbenjamin/base-secure-exchange"
